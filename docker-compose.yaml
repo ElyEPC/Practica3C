@@ -1,0 +1,17 @@
+
+services: 
+  postgres: 
+    build: . #Construir contenedor usando Dockerfile presente en el directorio actual (.) 
+    container_name: DbConfiguration # Nombre del contenedor 
+    ports:
+      - "5432:5432" # Puerto del contenedor mapeado al puerto 5433 del host
+    environment:
+      POSTGRES_USER: Admin # Usuario de la base de datos
+      POSTGRES_PASSWORD: p4ssw0rdDB # Contraseña del usuario
+      POSTGRES_DB: credenciales # Nombre de la base de datos
+    volumes:
+      - postgres_data:/var/lib/postgresql # Espacio donde los datos se conservarán, al detener el contenedor. 
+
+volumes:
+  postgres_data:
+    driver: local
